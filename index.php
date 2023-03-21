@@ -23,7 +23,7 @@
                 <div class="wrap-login100">
                     <form id="form_login" action="login.php" method="POST" class="login100-form validate-form">
                         <span class="login100-form-title p-b-34">
-                            <img src="../plugins/login17/images/logomas.jpeg" style="border-radius: 0%" height="250" width="250"><br><br>
+                            <img src="../plugins/login17/images/isotipopentalogic.jpg" style="border-radius: 0%" height="250" width="250"><br><br>
                                 PACS Editor
                         </span>
 
