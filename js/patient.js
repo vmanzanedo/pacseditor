@@ -1,37 +1,4 @@
-function cargaTablaEstudio()
-    {
-    $("#div_tabla_estudio").html("<div class='overlay'><i class='fa fa-refresh fa-spin'></i></div>");
 
-    $.ajax({
-            type: "POST",
-	           url: "estudio_lista.php",
-            success: function(html){
-                $('#div_tabla_estudio').html(html);
-                $(function () {
-                   $('#listaestudio').DataTable({
-                    "initComplete": function (settings, json) {  
-                      $("#listaestudio").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
-                       },
-                      "dom": '<"top">rt<"bottom"filp><"clear">',
-                      "paging": true,
-                      "pageLength": 10,
-                      "lengthChange": true,
-                      "searching": false,
-                      "order": [],
-                      "ordering": true,
-                      "info": true,
-                      "autoWidth": false,
-                      "scrollCollapse": true,
-                      "fixedColumns": false,
-                      "aoColumns": [null,null,null,null,null,null,null,null,null,null,{ "bSortable": false }],
-                      "language": {"url": "./plugins/datatables/Spanish.json"}            
-                    });
-
-            });
-
-        }
-    });
-}
 
 function modificarPatient()
     {

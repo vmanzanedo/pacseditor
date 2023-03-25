@@ -1,0 +1,2 @@
+<?php
+file_put_contents("../jpgimages/".$_REQUEST['study_iuid'].$_REQUEST['series_iuid'].$_REQUEST['sop_iuid'].".jpg", fopen("http://localhost:8080/wado/wado?requestType=WADO&studyUID=".$_REQUEST['study_iuid']."&seriesUID=".$_REQUEST['series_iuid']."&objectUID=".$_REQUEST['sop_iuid'], 'r'));

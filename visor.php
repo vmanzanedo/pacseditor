@@ -255,7 +255,7 @@ thead input {
     <strong>Copyright &copy; 2022 <a href="https://pentalogic.tech">Pentalogic S.A.</a>.</strong>
     Todos los derechos reservados.
     <div class="float-right d-none d-sm-inline-block">
-      <b>PACS Editor </b> 20230222
+      <b>PACS Editor </b> 20230325
     </div>
   </footer>
 </div>
@@ -276,8 +276,8 @@ thead input {
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 <script src="./plugins/sweetalert/sweetalert2.all.min.js"></script>
-<script src="./js/modales.js?v=1.20230222"></script>
-<script src="./js/patient.js?v=1.20230222"></script>
+<script src="./js/modales.js?v=1.20230325"></script>
+<script src="./js/patient.js?v=1.20230325"></script>
 
 </body>
 
@@ -338,28 +338,202 @@ function cargarTablaEstudio()
             success: function(html){
                 $('#div_tabla_estudio').html(html);
                 $(function () {
-                    var table = $('#listaestudio').DataTable({
-                        "dom": 'B<"lrtip"><"float-left"i>t<"float-left"l><"float-right"p><"clearfix">',
-                        "responsive": false,
-                        "orderCellsTop": true,
-                        "bInfo": false,
-                        "paging": true,
-                        "bStateSave": true,
-                        "pageLength": 10,
-                        "lengthChange": true,
-                        "searching": false,
-                        "ordering": true,
-                        "info": true,
-                        "autoWidth": false,
-                        "scrollCollapse": true,
-                        "fixedColumns": false,
-                        "aoColumns": [null,null,null,null,null,null,null,null,null,null,{ "bSortable": false }],
-                        "language": {"url": "./plugins/datatables/Spanish.json"} ,        
+                   $('#listaestudio').DataTable({
+                    "initComplete": function (settings, json) {  
+                      $("#listaestudio").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
+                       },
+                      "dom": '<"top">rt<"bottom"filp><"clear">',
+                      "paging": true,
+                      "pageLength": 10,
+                      "lengthChange": true,
+                      "searching": false,
+                      "order": [],
+                      "ordering": true,
+                      "info": true,
+                      "autoWidth": false,
+                      "scrollCollapse": true,
+                      "fixedColumns": false,
+                      "aoColumns": [null,null,null,null,null,null,null,null,null,null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }],
+                      "language": {"url": "./plugins/datatables/Spanish.json"}            
                     });
-                }); //fun
-            } //function
-           }); //ajax
-     }  //if
+
+                });
+            } 
+           }); 
+     }  
+     
+function ocultarEstudio(study_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea ocultar?',
+      text: "El estudio no se mostrará en el listadooo",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Ocultarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/ocultarestudio.php",
+          data: "study_iuid="+study_iuid,
+          success: function(html){
+            cargarTablaEstudio();
+          }    	
+        });    
+        Swal.fire(
+          'Oculto!',
+          'El estudio se ocultó.',
+          'success'
+        )
+      }
+    })
+  }
+
+  function mostrarEstudio(study_iuid) {
+    Swal.fire({
+      title: 'Seguro desea restablecer el estudio?',
+      text: "El estudio se verá en el listado gral.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Mostrarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/mostrarocultos.php",
+          data: "study_iuid="+study_iuid,
+          success: function(html){
+            cargarTablaEstudio();
+          }    	
+        });    
+        Swal.fire(
+          'El estudio fue restablecido.',
+          'success'
+        )
+      }
+    })
+  }
+
+  function ocultarSerie(series_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea ocultar la SERIE?',
+      text: "La serie no podra ser consultada.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Ocultarla!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/ocultarserie.php",
+          data: "series_iuid="+series_iuid+"&op=0",
+          success: function(html){
+            //cargarTablaEstudio();
+            $("#modal").modal('hide');
+          }    	
+        });    
+        Swal.fire(
+          'Oculta!',
+          'La Serie se ocultó.',
+          'success'
+        )
+      }
+    })
+  }
+
+  function mostrarSerie(series_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea restablecer la SERIE?',
+      text: "La serie podra ser consultada.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Restablecer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/ocultarserie.php",
+          data: "series_iuid="+series_iuid+"&op=1",
+          success: function(html){
+            //cargarTablaEstudio();
+            $("#modal").modal('hide');
+          }    	
+        });    
+        Swal.fire(
+          'Restablecida!',
+          'La Serie se restablecio.',
+          'success'
+        )
+      }
+    })
+  }
+
+
+  function ocultarInstancia(sop_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea ocultar la INSTANCIA?',
+      text: "La instancia no podra ser vista.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Ocultarla!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/ocultarinstancia.php",
+          data: "sop_iuid="+sop_iuid+"&op=0",
+          success: function(html){
+            //cargarTablaEstudio();
+            $("#modal").modal('hide');
+          }    	
+        });    
+        Swal.fire(
+          'Oculta!',
+          'La Instancia se ocultó.',
+          'success'
+        )
+      }
+    })
+  }
+
+  function mostrarInstancia(sop_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea restablecer la INSTANCIA?',
+      text: "La instancia podra ser vista.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Restablecer!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/ocultarinstancia.php",
+          data: "sop_iuid="+sop_iuid+"&op=1",
+          success: function(html){
+            //cargarTablaEstudio();
+            $("#modal").modal('hide');
+          }    	
+        });    
+        Swal.fire(
+          'Restablecida!',
+          'La Instancia se restablecio.',
+          'success'
+        )
+      }
+    })
+  }
+
     
      
 </script>  

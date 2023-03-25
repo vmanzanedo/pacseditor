@@ -6,6 +6,14 @@ function modales()
        var modulo = button.data('modulo');
        switch(button.data('entidad'))
             { 
+            case "gestorimagen":
+                switch(op)
+                    {
+                    case 1: titulo = "Gestion de Imagenes"; break;
+                    }
+                ruta = "../pacseditor/gestionimagen/gestionimagen_form.php",
+                datos = "pk="+button.data('pk')+"&study_iuid="+button.data('studyuid')+"&op="+op;	    
+                break;   
             case "pacseditor":
                 switch(op)
                     {

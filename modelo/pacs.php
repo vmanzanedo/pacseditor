@@ -61,9 +61,10 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     
     $cnn = new ConexionPacs();
     $consulta = $cnn->prepare("
-      SELECT patient.pk as patient_pk, patient.pat_id, replace(pat_name,'^',' ') as pat_name, pat_birthdate, pat_sex, study_datetime, study_desc, accession_no, study.study_iuid, study.pk, mods_in_study, study.updated_time
+      SELECT patient.pk as patient_pk, patient.pat_id, replace(pat_name,'^',' ') as pat_name, pat_birthdate, pat_sex, study_datetime, study_desc, accession_no, study.study_iuid, study.pk, mods_in_study, study.updated_time, oculto.oculto_id
         FROM study 
         INNER JOIN patient ON study.patient_fk = patient.pk
+        LEFT JOIN oculto ON study.study_iuid = oculto.study_iuid
       WHERE true AND $criterios 
       ORDER BY study.pk DESC LIMIT 1000");
     $consulta->execute(); 
@@ -170,6 +171,76 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     $consulta->execute(array($study_iuid));
     return $consulta->fetch();
   }
+
+  //OBTIENE TODAS LAS SERIES DE UN ESTUDIO
+  function ListaSeriexStudy($pk)
+  {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("SELECT *, series.series_iuid as seriesiuid FROM series
+                                 LEFT JOIN ocultoserie ON ocultoserie.series_iuid = series.series_iuid
+                                WHERE study_fk = ? 
+                               ORDER BY CAST(series_no AS UNSIGNED)");
+    $consulta->execute(array($pk)); 
+    return $consulta;
+  }
+  //OBTIENE LAS INSTANCIAS POR SERIE
+  function ListaInstancias($series_pk)
+    {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("SELECT *, instance.sop_iuid as sopiuid FROM instance 
+                                 LEFT JOIN ocultoinstance ON ocultoinstance.sop_iuid = instance.sop_iuid
+                                WHERE series_fk = ? 
+                               ORDER BY CAST(inst_no AS UNSIGNED)");
+    $consulta->execute(array($series_pk));
+    return $consulta;    
+    }
+
+  function OcultarEstudio($study_iuid)
+    {
+    $cnn = new ConexionPacs();
+    $fecha = Date("Y-m-d H:i:s");
+    $consulta = $cnn->prepare("INSERT INTO oculto (study_iuid, oculto_fecha, oculto_usuario) VALUES (?,?,?);");
+    $consulta->execute(array($study_iuid, $fecha, $_SESSION['usuario']));
+    print_r($consulta->errorInfo());
+    }       
+
+ function MostrarEstudio($study_iuid)
+    {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("DELETE FROM oculto WHERE study_iuid = ?");
+    $consulta->execute(array($study_iuid));    
+    }
+
+  function OcultarSerie($series_iuid)
+    {
+    $cnn = new ConexionPacs();
+    $fecha = Date("Y-m-d H:i:s");
+    $consulta = $cnn->prepare("INSERT INTO ocultoserie (series_iuid, ocultoserie_fecha, ocultoserie_usuario) VALUES (?,?,?)");
+    $consulta->execute(array($series_iuid, $fecha, $_SESSION['usuario']));
+    }  
+    
+  function OcultarInstancia($sop_iuid)
+    {
+    $cnn = new ConexionPacs();
+    $fecha = Date("Y-m-d H:i:s");
+    $consulta = $cnn->prepare("INSERT INTO ocultoinstance (sop_iuid, ocultoinstance_fecha, ocultoinstance_usuario) VALUES (?,?,?)");
+    $consulta->execute(array($sop_iuid, $fecha, $_SESSION['usuario']));
+    }  
+
+  function MostrarSerie($series_iuid)
+    {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("DELETE FROM ocultoserie WHERE series_iuid = ?");
+    $consulta->execute(array($series_iuid)); 
+    } 
+    
+  function MostrarInstancia($sop_iuid)
+    {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("DELETE FROM ocultoinstance WHERE sop_iuid = ?");
+    $consulta->execute(array($sop_iuid));
+    }   
+  
 
 }
 
