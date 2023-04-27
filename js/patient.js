@@ -25,7 +25,7 @@ function modificarPatient()
                     success: function(html){
                     }
                 });
-              cargaTablaEstudio();
+              cargarTablaEstudio();
             }
         });
     }

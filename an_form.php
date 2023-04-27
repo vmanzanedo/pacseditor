@@ -36,7 +36,7 @@ $practica_an = (isset($_REQUEST['practica_an']))?$_REQUEST['practica_an']:0;
                         showConfirmButton: false,
                         timer: 1500
                         });
-                cargaTablaEstudio();
+                cargarTablaEstudio();
             }
         });
     }

@@ -37,7 +37,7 @@ $study_desc = (isset($_REQUEST['study_desc']))?$_REQUEST['study_desc']:0;
                         timer: 1500
                         });
                 $('#modal').modal('hide');
-                cargaTablaEstudio();
+                cargarTablaEstudio();
             }
         });
     }

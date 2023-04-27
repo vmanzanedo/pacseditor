@@ -60,7 +60,7 @@ echo "Mensaje: ". $message;
 $msg = new \Aranyasen\HL7\Message($message); // Either \n or \r can be used as segment endings
 
 // Envio el mensaje generado al servidor 
-$ip = '10.7.6.217'; //IP LOCAL
+$ip = '127.0.0.1'; //IP LOCAL
 $port = 2575;
 
 if (availableUrl($ip, $port, $timeout=5)) {
