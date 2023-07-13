@@ -58,7 +58,7 @@ PID|||$paciente_dni^0^0^$issuer||$paciente_nombre||$paciente_fechanac|$paciente_
 $msg = new \Aranyasen\HL7\Message($message); // Either \n or \r can be used as segment endings
 
 // Envio el mensaje generado al servidor de la worklist
-$ip = '10.7.6.211'; //IP Produccion
+$ip = '127.0.0.1'; //IP Produccion
 //$ip = '10.7.6.100'; //IP Testing
 $port = 2575;
 

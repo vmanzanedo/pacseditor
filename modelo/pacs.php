@@ -61,7 +61,7 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     
     $cnn = new ConexionPacs();
     $consulta = $cnn->prepare("
-      SELECT patient.pk as patient_pk, patient.pat_id, replace(pat_name,'^',' ') as pat_name, pat_birthdate, pat_sex, study_datetime, study_desc, accession_no, study.study_iuid, study.pk, mods_in_study, study.updated_time, oculto.oculto_id
+      SELECT patient.pk as patient_pk, accno_issuer_fk, patient.pat_id, replace(pat_name,'^',' ') as pat_name, pat_birthdate, pat_sex, study_datetime, study_desc, accession_no, study.study_iuid, study.pk, mods_in_study, study.updated_time, oculto.oculto_id
         FROM study 
         INNER JOIN patient ON study.patient_fk = patient.pk
         LEFT JOIN oculto ON study.study_iuid = oculto.study_iuid
@@ -109,6 +109,23 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     $cnn = new ConexionPacs();
     $consulta = $cnn->prepare("UPDATE study SET accession_no = ? WHERE study_iuid = ?");
     $consulta->execute(array($practica_an,$study_iuid));       print_r($consulta->errorInfo());
+  }
+
+  //--------- AN ISSUER EN TABLA STUDY -----------
+
+  function ListaIssuer()
+  {
+  $cnn = new ConexionPacs();
+  $consulta = $cnn->prepare("SELECT * FROM pacsdb.issuer LEFT JOIN ecos.sucursal ON entity_id = sucursal_key");
+  $consulta->execute();
+  return $consulta;    
+  }
+  
+  function ActualizarANIssuer($study_iuid, $accno_issuer_fk)
+  {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("UPDATE study SET accno_issuer_fk = ? WHERE study_iuid = ?");
+    $consulta->execute(array($accno_issuer_fk,$study_iuid));       
   }
 
   //--------- MODIFICAR STUDY_DESC EN TABLA STUDY -----------

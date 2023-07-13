@@ -205,7 +205,7 @@ thead input {
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <h1>Lista de Estudios - <?php echo $_SESSION['sucursal_descripcion'] ?></h1>
+        <h1>Lista de Estudios</h1>
       </div> <!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -276,8 +276,8 @@ thead input {
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 <script src="./plugins/sweetalert/sweetalert2.all.min.js"></script>
-<script src="./js/modales.js?v=1.20230325"></script>
-<script src="./js/patient.js?v=1.20230325"></script>
+<script src="./js/modales.js?v=1.20230713"></script>
+<script src="./js/patient.js?v=1.20230713"></script>
 
 </body>
 

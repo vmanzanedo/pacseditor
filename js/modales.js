@@ -26,10 +26,10 @@ function modales()
             case "pacseditor_an":
                     switch(op)
                     {
-                    case 1: titulo = "Modificar Practica A.N."; break;
+                    case 1: titulo = "Modificar A.N."; break;
                     }
                 ruta = "../pacseditor/an_form.php",
-                datos = "study_iuid="+button.data('studyuid')+"&practica_an="+button.data('practica_an');	    
+                datos = "study_iuid="+button.data('studyuid')+"&practica_an="+button.data('practica_an')+"&accno_issuer_fk="+button.data('accno_issuer_fk');	    
                 break;        
             case "pacseditor_studydesc":
                     switch(op)
