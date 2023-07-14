@@ -255,7 +255,7 @@ thead input {
     <strong>Copyright &copy; 2022 <a href="https://pentalogic.tech">Pentalogic S.A.</a>.</strong>
     Todos los derechos reservados.
     <div class="float-right d-none d-sm-inline-block">
-      <b>PACS Editor </b> 20230325
+      <b>PACS Editor </b> 20230713
     </div>
   </footer>
 </div>
