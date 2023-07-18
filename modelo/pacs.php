@@ -42,6 +42,14 @@ function SelectPatient($pat_id)
     $consulta->execute(array($pat_id));
     return $consulta->fetch();
   }  
+
+function SelectPatientxPk($pk)
+  {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("SELECT * FROM patient WHERE pk = ?");
+    $consulta->execute(array($pk));
+    return $consulta->fetch();
+  }  
   
 function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an)
     {
