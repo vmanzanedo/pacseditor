@@ -19,17 +19,27 @@ $fechaDeEvento = Date('Ymd');
 
 //Actualizacion para corregir ambiguedad de registros que tengan como pat_id el $paciente_dni
 //Se actualiza issuer a los DNI que ya existen en la BD, poniendoles un cero
-if ($operacion==2) {
-  $reg = $pacs->SelectPatient($paciente_dni);
-  if (isset($reg['pk'])) {
-    $pacs->ActualizarIssuerxDNI($paciente_dni,0);
-  }
-}
+// if ($operacion==2) { //Edicion de DNI
+//   $reg = $pacs->SelectPatient($paciente_dni);
+//   if (isset($reg['pk'])) {
+//     $pacs->ActualizarIssuerxDNI($paciente_dni,0);
+//   }
 
-//obtengo el issuer mas alto 
-$reg = $pacs->ObtenerMaxIssuer($paciente_dni_old);
-$issuer = $reg['maximo']+1; 
-//actualizo el arreglo con el nuevo $issuer
+//   //obtengo el issuer mas alto 
+//   $reg = $pacs->ObtenerMaxIssuer($paciente_dni_old);
+//   $issuer = $reg['maximo']+1; 
+//   //actualizo el arreglo con el nuevo $issuer
+//   $pacs->ActualizarIssuer($pk,$issuer);
+
+  
+// }
+
+//Almaceno el issuer original
+$reg = $pacs->SelectPatientxPk($pk);
+$issuer_orig = $reg['pat_id_issuer'];
+
+//Altero issuer para poder hacer la modificacion, usando un numero random
+$issuer = rand(1,100);
 $pacs->ActualizarIssuer($pk,$issuer);
 
 
@@ -72,6 +82,18 @@ if (availableUrl($ip, $port, $timeout=5)) {
     $msa = $ack->getSegmentsByName('MSA')[0];
     print_r($msa);
     $error =$msa->getField(3); 
+
+    //Actualizo issuer con valor original  
+    $pacs->ActualizarIssuer($pk, $issuer_orig);
+
+    //En nuevo paciente mergeado (si es que hay), actualizo el issuer con valor original
+    $reg = $pacs->SelectPatientxPk($pk);
+    if (isset($reg['merge_fk'])) {
+      $pacs->ActualizarIssuer($reg['merge_fk'], $issuer_orig);
+    }
+    
+
+
   }
 }
 else

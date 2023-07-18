@@ -7,7 +7,7 @@ function modificarPatient()
             url: "../pacseditor/patient_abm.php",
             data: "op="+$("#operacion").val()+"&pk="+$("#pk").val()+"&paciente_nombre="+$("#paciente_nombre").val()+"&paciente_dni="+$("#paciente_dni").val()+"&paciente_dni_old="+$("#paciente_dni_old").val()+"&paciente_fechanac="+$("#paciente_fechanac").val()+"&paciente_sexo="+$("#paciente_sexo").val(), 
             success: function(html){
-              if (html.includes('ambiguous')||html.includes('exists')) { 
+              if (html.includes('ambiguous')||html.includes('exists')||html.includes('merged')) { 
                   $.ajax ({
                       type: "POST",
                       url: "../pacseditor/patient_abm_new_issuer.php",

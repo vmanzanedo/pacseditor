@@ -1,4 +1,11 @@
- <?php
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+include("seguridad.php");
+require_once("./modelo/pacs.php");
+$pacs = new Pacs();
+
 $operacion = (isset($_REQUEST['op']))?$_REQUEST['op']:0;
 $pk = (isset($_REQUEST['pk']))?$_REQUEST['pk']:0;
 $paciente_nombre = (isset($_REQUEST['paciente_nombre']))?$_REQUEST['paciente_nombre']:"";
@@ -40,6 +47,10 @@ require 'HL7-master/src/HL7/Segments/MSH.php';
 // MRG|$dni^0^0^$issuer|
 // ";
 
+//Almaceno el issuer original
+$reg = $pacs->SelectPatientxPk($pk);
+$issuer_orig = $reg['pat_id_issuer'];
+
 
 if($operacion == 1){
 $message = "
@@ -73,6 +84,16 @@ if (availableUrl($ip, $port, $timeout=5)) {
     //print_r($msa);
     $error = $msa->getField(3);
     print_r($error);
+
+    //Actualizo issuer con valor original  
+    $pacs->ActualizarIssuer($pk, $issuer_orig);
+
+    //En nuevo paciente mergeado (si es que hay), actualizo el issuer con valor original
+    $reg = $pacs->SelectPatientxPk($pk);
+    if (isset($reg['merge_fk'])) {
+      $pacs->ActualizarIssuer($reg['merge_fk'], $issuer_orig);
+    }
+
   }
 }
 else
