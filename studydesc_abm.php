@@ -5,7 +5,7 @@ require_once './modelo/pacs.php';
 $pacs = new Pacs();
 
 $practica_studydesc_old = (isset($_REQUEST['practica_studydesc_old']))?$_REQUEST['practica_studydesc_old']:0;
-$study_desc = (isset($_REQUEST['study_desc']))?$_REQUEST['study_desc']:0;
+$study_desc = (isset($_REQUEST['study_desc']))?utf8_decode($_REQUEST['study_desc']):0;
 $study_iuid = (isset($_REQUEST['study_iuid']))?$_REQUEST['study_iuid']:"";
 
 $usuario = $_SESSION['usuario'];

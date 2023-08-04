@@ -9,7 +9,7 @@ $pacs = new Pacs();
  
 $operacion = (isset($_REQUEST['op']))?$_REQUEST['op']:0;
 $pk = (isset($_REQUEST['pk']))?$_REQUEST['pk']:0;
-$paciente_nombre = (isset($_REQUEST['paciente_nombre']))?$_REQUEST['paciente_nombre']:"";
+$paciente_nombre = (isset($_REQUEST['paciente_nombre']))?utf8_decode($_REQUEST['paciente_nombre']):"";
 $paciente_dni = (isset($_REQUEST['paciente_dni']))?$_REQUEST['paciente_dni']:"";
 $paciente_fechanac = (isset($_REQUEST['paciente_fechanac']))?$_REQUEST['paciente_fechanac']:"";
 $paciente_sexo = (isset($_REQUEST['paciente_sexo']))?$_REQUEST['paciente_sexo']:""; $paciente_sexo = strtoupper($paciente_sexo);
