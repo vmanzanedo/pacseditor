@@ -55,13 +55,13 @@ $issuer_orig = $reg['pat_id_issuer'];
 if($operacion == 1){
 $message = "
 MSH|^~\&|SendingApp|SendingFacility|HL7API|PKB|$fechaDeEvento||ADT^A08|ABC0000000003|P|2.4
-PID|||$paciente_dni^0^0^||$paciente_nombre||$paciente_fechanac|$paciente_sexo|||||||||||||||||||||||
+PID|||$paciente_dni^0^0^$issuer_orig||$paciente_nombre||$paciente_fechanac|$paciente_sexo|||||||||||||||||||||||
 ";
 }else{
 $message = "
 MSH|^~\&|SendingApp|SendingFacility|HL7API|PKB|$fechaDeEvento||ADT^A47|ABC0000000003|P|2.4
 PID|||$paciente_dni^0^0^||$paciente_nombre||$paciente_fechanac|$paciente_sexo|||||||||||||||||||||||
-MRG|$paciente_dni_old^0^0^|";
+MRG|$paciente_dni_old^0^0^$issuer_orig|";
 }
 
 /////// Envio de mensaje HL7
