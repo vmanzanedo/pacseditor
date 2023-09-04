@@ -22,9 +22,10 @@ $lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],
           <th>Fecha Estudio</th>
           <th>Telefono</th>
           <th>Modalidad</th>
-	  <th>Imágenes</th>
+	        <th>Imágenes</th>
           <th style="text-align:center"><i class="fa fa-edit"></i></th>
           <th>Series</th>
+          <th></th>
           <th></th>
         </tr>
     </thead>
@@ -70,6 +71,9 @@ $lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],
           <?php } else { ?>
                 <button type="button" class="btn btn-primary btn-block" onClick="ocultarEstudio('<?php echo $reg['study_iuid'] ?>')"><i class="fa fa-eye-slash" aria-hidden="true"></i> Ocultar</button>
           <?php } ?>
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary btn-block" onClick="eliminarEstudio('<?php echo $reg['study_iuid'] ?>')"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
         </td>
       </tr>
       <?php }?>
