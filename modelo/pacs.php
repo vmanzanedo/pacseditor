@@ -1,5 +1,6 @@
 <?php
-require_once("/var/www/html/ecos/pacseditor/seguridad.php");
+// require_once("/var/www/html/ecos/pacseditor/seguridad.php");
+include("../seguridad.php");
 require_once("conexionpacs.php");
 require_once("conexion.php");
 
@@ -243,7 +244,7 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     $consulta = $cnn->prepare("INSERT INTO ocultoserie (series_iuid, ocultoserie_fecha, ocultoserie_usuario) VALUES (?,?,?)");
     $consulta->execute(array($series_iuid, $fecha, $_SESSION['usuario']));
     }  
-    
+  
   function OcultarInstancia($sop_iuid)
     {
     $cnn = new ConexionPacs();

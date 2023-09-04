@@ -15,6 +15,7 @@ $listaseries = $pacs->ListaSeriexStudy($_REQUEST['pk']);
           <th>Serie_Desc</th>
           <th></th>
           <th style="text-align:right"></th>
+          <th style="text-align:right"></th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +25,7 @@ $listaseries = $pacs->ListaSeriexStudy($_REQUEST['pk']);
         <td><?php echo utf8_encode($regseries['body_part']) ?></td>
         <td><?php echo utf8_encode($regseries['series_desc']) ?></td>
         <td>
-        <?php if($regseries['ocultoserie_id']==null){?> 
+          <?php if($regseries['ocultoserie_id']==null){?> 
             <div class="btn-group dropright">
                 <a class="btn btn-secondary btn-sm dropdown-toggle" onclick="verInstancias('<?php echo $regseries['pk'] ?>','<?php echo $regseries['seriesiuid'] ?>','<?php echo $study_iuid ?>')" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <!-- <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
@@ -36,7 +37,7 @@ $listaseries = $pacs->ListaSeriexStudy($_REQUEST['pk']);
                   </ul>
                 </div>
             </div>
-            <?php } ?>
+          <?php } ?>
         </td>
         <td style="text-align:right">
         <?php if($regseries['ocultoserie_id']!=null){ //si esta oculta ?>
@@ -44,6 +45,9 @@ $listaseries = $pacs->ListaSeriexStudy($_REQUEST['pk']);
         <?php }else{  ?>
             <button class="btn btn-success btn-sm" onclick="ocultarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Ocultar Serie</button>          
             <?php } ?>
+        </td>
+        <td style="text-align:right">
+            <button class="btn btn-danger btn-sm" onclick="eliminarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Eliminar Serie</button>
         </td>
       </tr>
       <?php } ?>
