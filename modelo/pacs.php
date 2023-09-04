@@ -221,13 +221,21 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     return $consulta;    
     }
 
+  function AuditaEliminacion($iuid, $tipo)
+    {
+      $cnn = new ConexionPacs();
+      $fecha = Date("Y-m-d H:i:s");
+      $consulta = $cnn->prepare("INSERT INTO auditaeliminacion (auditaeliminacion_iuid, auditaeliminacion_tipo, auditaeliminacion_fecha, auditaeliminacion_usuario) VALUES (?,?,?,?)");
+      $consulta->execute(array($iuid, $tipo, $fecha, $_SESSION['usuario']));  //tipo=1 Estudio; tipo=2 Serie; tipo=3 Instancia
+    }
+
   function OcultarEstudio($study_iuid)
     {
     $cnn = new ConexionPacs();
     $fecha = Date("Y-m-d H:i:s");
     $consulta = $cnn->prepare("INSERT INTO oculto (study_iuid, oculto_fecha, oculto_usuario) VALUES (?,?,?);");
     $consulta->execute(array($study_iuid, $fecha, $_SESSION['usuario']));
-    print_r($consulta->errorInfo());
+    //print_r($consulta->errorInfo());
     }       
 
  function MostrarEstudio($study_iuid)
