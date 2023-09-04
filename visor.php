@@ -353,7 +353,7 @@ function cargarTablaEstudio()
                       "autoWidth": false,
                       "scrollCollapse": true,
                       "fixedColumns": false,
-                      "aoColumns": [null,null,null,null,null,null,null,null,null,null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }],
+                      "aoColumns": [null,null,null,null,null,null,null,null,null,null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }],
                       "language": {"url": "./plugins/datatables/Spanish.json"}            
                     });
 
@@ -361,15 +361,44 @@ function cargarTablaEstudio()
             } 
            }); 
      }  
+//-----------------------ESTUDIO-------------------------------
+function eliminarEstudio(study_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea ELIMINAR el ESTUDIO?',
+      text: "El estudio no podra ser recuperado.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
+      confirmButtonText: 'Si, Eliminarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/eliminarestudio.php",
+          data: "study_iuid="+study_iuid,
+          success: function(html){
+            cargarTablaEstudio();
+          }    	
+        });    
+        Swal.fire(
+          'Eliminado!',
+          'El estudio se eliminó.',
+          'success'
+        )
+      }
+    })
+  }
+
      
 function ocultarEstudio(study_iuid) {
     Swal.fire({
       title: 'Está seguro que desea ocultar?',
-      text: "El estudio no se mostrará en el listadooo",
+      text: "El estudio no se mostrará en el listado.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Ocultarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -396,8 +425,8 @@ function ocultarEstudio(study_iuid) {
       text: "El estudio se verá en el listado gral.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Mostrarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -416,6 +445,36 @@ function ocultarEstudio(study_iuid) {
       }
     })
   }
+//-----------------------SERIES-------------------------------
+function eliminarSerie(series_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea ELIMINAR la SERIE?',
+      text: "La serie no podra ser resuperada.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
+      confirmButtonText: 'Si, Eliminarla!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/eliminarserie.php",
+          data: "series_iuid="+series_iuid+"&op=0",
+          success: function(html){
+            //cargarTablaEstudio();
+            $("#modal").modal('hide');
+          }    	
+        });    
+        Swal.fire(
+          'Eliminada!',
+          'La Serie se eliminó.',
+          'success'
+        )
+      }
+    })
+  }
+
 
   function ocultarSerie(series_iuid) {
     Swal.fire({
@@ -423,8 +482,8 @@ function ocultarEstudio(study_iuid) {
       text: "La serie no podra ser consultada.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Ocultarla!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -452,8 +511,8 @@ function ocultarEstudio(study_iuid) {
       text: "La serie podra ser consultada.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Restablecer!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -474,6 +533,37 @@ function ocultarEstudio(study_iuid) {
       }
     })
   }
+//-----------------------INSTANCIAS-------------------------------
+function eliminarInstancia(sop_iuid) {
+    Swal.fire({
+      title: 'Está seguro que desea ELIMINAR la INSTANCIA?',
+      text: "La instancia no se podrá recuperar.",
+      icon: 'warning',
+      showCancelButton: true,
+      // confirmButtonColor: '#3085d6',
+      // cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
+      confirmButtonText: 'Si, Eliminarla!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax ({
+          type: "POST",
+          url: "./gestionimagen/eliminarinstancia.php",
+          data: "sop_iuid="+sop_iuid+"&op=0",
+          success: function(html){
+            //cargarTablaEstudio();
+            $("#modal").modal('hide');
+          }    	
+        });    
+        Swal.fire(
+          'Eliminada!',
+          'La Instancia se eliminó.',
+          'success'
+        )
+      }
+    })
+  }
 
 
   function ocultarInstancia(sop_iuid) {
@@ -482,8 +572,8 @@ function ocultarEstudio(study_iuid) {
       text: "La instancia no podra ser vista.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Ocultarla!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -511,8 +601,8 @@ function ocultarEstudio(study_iuid) {
       text: "La instancia podra ser vista.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Restablecer!'
     }).then((result) => {
       if (result.isConfirmed) {
