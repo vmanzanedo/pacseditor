@@ -368,8 +368,8 @@ function eliminarEstudio(study_iuid) {
       text: "El estudio no podra ser recuperado.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Eliminarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -397,8 +397,8 @@ function ocultarEstudio(study_iuid) {
       text: "El estudio no se mostrará en el listado.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Ocultarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -425,8 +425,8 @@ function ocultarEstudio(study_iuid) {
       text: "El estudio se verá en el listado gral.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Mostrarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -452,8 +452,8 @@ function eliminarSerie(series_iuid) {
       text: "La serie no podra ser resuperada.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Eliminarla!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -482,8 +482,8 @@ function eliminarSerie(series_iuid) {
       text: "La serie no podra ser consultada.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Ocultarla!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -511,8 +511,8 @@ function eliminarSerie(series_iuid) {
       text: "La serie podra ser consultada.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Restablecer!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -540,8 +540,10 @@ function eliminarInstancia(sop_iuid) {
       text: "La instancia no se podrá recuperar.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      // confirmButtonColor: '#3085d6',
+      // cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Eliminarla!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -570,8 +572,8 @@ function eliminarInstancia(sop_iuid) {
       text: "La instancia no podra ser vista.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor:'#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Ocultarla!'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -599,8 +601,8 @@ function eliminarInstancia(sop_iuid) {
       text: "La instancia podra ser vista.",
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#d33',
+      cancelButtonColor:  '#3085d6',
       confirmButtonText: 'Si, Restablecer!'
     }).then((result) => {
       if (result.isConfirmed) {
