@@ -23,6 +23,8 @@ include("seguridad.php");
   
   <!-- <link rel="stylesheet" href="plugins/toastr/build/toastr.css"> -->
 
+  <link rel="stylesheet" href="plugins/jquery-flexdatalist-2.2.4/jquery.flexdatalist.min.css">
+
 </head>
 <style>
 thead input {
@@ -278,6 +280,8 @@ thead input {
 <script src="./plugins/sweetalert/sweetalert2.all.min.js"></script>
 <script src="./js/modales.js?v=1.20230713"></script>
 <script src="./js/patient.js?v=1.20230713"></script>
+
+<script src="plugins/jquery-flexdatalist-2.2.4/jquery.flexdatalist.min.js"></script>
 
 </body>
 

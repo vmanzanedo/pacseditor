@@ -5,6 +5,7 @@ $fecha_nacimiento = (isset($_REQUEST['fecha_nacimiento']))?$_REQUEST['fecha_naci
 $paciente_sexo = (isset($_REQUEST['paciente_sexo']))?$_REQUEST['paciente_sexo']:0;
 $pk = (isset($_REQUEST['pk']))?$_REQUEST['pk']:0;
 $op = (isset($_REQUEST['op']))?$_REQUEST['op']:0;
+$study_iuid = (isset($_REQUEST['study_iuid']))?$_REQUEST['study_iuid']:0;
 
 echo "Patient PK: ".$pk;
 ?>
@@ -15,6 +16,7 @@ echo "Patient PK: ".$pk;
     <input type="hidden" id="paciente_fechanac_old" value="<?php echo $paciente_fechanac ?>">
     <input type="hidden" id="paciente_sexo_old" value="<?php echo $paciente_sexo ?>">
     <input type="hidden" id="pk" value="<?php echo $pk ?>">
+    <input type="hidden" id="study_iuid" value="<?php echo $study_iuid ?>">
     
     <div id="div_pacs_nombre" class="form-group">
       <label for="pacs_nombre">Apellido Nombre </label>
@@ -44,6 +46,7 @@ echo "Patient PK: ".$pk;
         <label for="confirmar" class="control-label"> &nbsp;</label><br>
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
         <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="modificarPatient()">Confirmar</button>      
+        <button id='crearpaciente' type='button' class='btn btn-success pull-right' data-dismiss="modal" onclick="crearPatient()">Crear Paciente y Migrar Estudio</button>      
     </div>
 </form>   
 

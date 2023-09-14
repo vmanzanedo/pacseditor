@@ -21,7 +21,7 @@ function modales()
                     case 2: titulo = "Modificar Dni"; break;
                     }
                 ruta = "../pacseditor/patient_form.php",
-                datos = "paciente_nombre="+button.data('paciente_nombre')+"&pk="+button.data('pk')+"&paciente_dni="+button.data('paciente_dni')+"&fecha_nacimiento="+button.data('fecha_nacimiento')+"&paciente_sexo="+button.data('paciente_sexo')+"&op="+op;	    
+                datos = "paciente_nombre="+button.data('paciente_nombre')+"&pk="+button.data('pk')+"&paciente_dni="+button.data('paciente_dni')+"&fecha_nacimiento="+button.data('fecha_nacimiento')+"&paciente_sexo="+button.data('paciente_sexo')+"&study_iuid="+button.data('study_iuid')+"&op="+op;	    
                 break;    
             case "pacseditor_an":
                     switch(op)

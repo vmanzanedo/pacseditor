@@ -9,3 +9,7 @@ Versiones
 2023-08-04 Almacena correctamente caracteres especiales en nombre de paciente y descripcion de estudio
 
 2023-08-18 Se corrige edicion de nombre de paiente para conservar pat_id_issuer
+
+2023-09-04 Se agrega eliminacion (envio a papelera) de estudios, series o instancias
+
+2023-09-08 Se añade funcion "Agregar paciente y migrar estudio", y "Mover Series"
