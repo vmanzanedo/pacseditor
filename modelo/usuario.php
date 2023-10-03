@@ -30,6 +30,16 @@ function Autenticar($usuario,$clave)
         $_SESSION['sucursal_key']=$regsuc['sucursal_key'];
         $_SESSION['sucursal_campotelefono']=$regsuc['sucursal_campotelefono'];
         
+        //Si hay sucursal por defecto, sobrescribo variables de session por sus datos
+        $consulta=$cnn->prepare("SELECT sucursal.sucursal_id, sucursal_descripcion, sucursal_key, sucursal_campotelefono FROM usuario INNER JOIN sucursal ON sucursaldefecto_id = sucursal.sucursal_id WHERE usuario_id = ?");        
+        $consulta->execute(array($reg['usuario_id']));
+        $regsuc = $consulta->fetch();
+        if (isset($regsuc['sucursal_key'])) {
+            $_SESSION['sucursal_id']=$regsuc['sucursal_id'];
+            $_SESSION['sucursal_descripcion']=$regsuc['sucursal_descripcion'];
+            $_SESSION['sucursal_key']=$regsuc['sucursal_key'];
+            $_SESSION['sucursal_campotelefono']=$regsuc['sucursal_campotelefono'];
+        }
         
         $consulta = $cnn->prepare("INSERT INTO login (usuario_id, login_fecha, login_accion) VALUES (?,?,?)");
         $consulta->execute(array($reg['usuario_id'], date("Y-m-d H:i:s"),1));

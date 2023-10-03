@@ -54,6 +54,7 @@ function SelectPatientxPk($pk)
 function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an)
     {
     $criterios = "true";
+    if ($sucursal_key!='') $criterios .= " AND patient.pat_id_issuer = '$sucursal_key'";
     if ($estudio_dni!='') $criterios .= " AND patient.pat_id = $estudio_dni";
     if ($estudio_paciente != "") {
       $arreglo = explode(" ",$estudio_paciente);

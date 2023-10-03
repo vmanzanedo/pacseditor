@@ -1,5 +1,12 @@
 <?php 
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+
 include("seguridad.php");
+require_once("./modelo/sucursal.php");
+
+$sucursal = new Sucursal();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +62,6 @@ thead input {
             <i class="fa fa-sign-out-alt"></i>  Cerrar Sesión
             <span class="float-right text-muted text-sm"></span>
           </a>
-          <div class="dropdown-divider"></div>
         </div>  
       </div>
       
@@ -102,6 +108,30 @@ thead input {
               </p>
             </span>
           </li>  
+
+          <li class="nav-item">
+            <a href="#" class="nav-link"  id="menuSucursal">
+              <i class="nav-icon fa fa-building"></i>
+              <p>
+                Sucursal
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <div class="nav-link">
+                  <select class="form-control" id="sucursal_key" title="Sucursal" onchange="cambiarSucursal($(this).val())">
+                    <?php 
+                    $sucursal = new Sucursal();
+                    $lista = $sucursal->ListaxUsuario($_SESSION['usuario_id']);
+                    while($reg = $lista->fetch()) { ?>
+                      <option value="<?php echo $reg['sucursal_key']?>" <?php if ($_SESSION['sucursal_key']==$reg['sucursal_key']) echo "selected"; ?> ><?php echo $reg['sucursal_descripcion'] ?></option>
+                    <?php } ?>
+                  </select>                     
+                </div>
+              </li>
+            </ul>
+          </li>
 
           <li class="nav-item">
             <a href="#" class="nav-link" id="menuDni">
@@ -207,7 +237,7 @@ thead input {
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <h1>Lista de Estudios</h1>
+        <h1>Lista de Estudios  - <?php echo $_SESSION['sucursal_descripcion'] ?></h1>
       </div> <!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -257,7 +287,7 @@ thead input {
     <strong>Copyright &copy; 2022 <a href="https://pentalogic.tech">Pentalogic S.A.</a>.</strong>
     Todos los derechos reservados.
     <div class="float-right d-none d-sm-inline-block">
-      <b>PACS Editor </b> 20230818
+      <b>PACS Editor </b>
     </div>
   </footer>
 </div>
@@ -304,6 +334,9 @@ setTimeout(function(){
 setTimeout(function(){
   $('#menuFecha').click();
 },500)
+setTimeout(function(){
+  $('#menuSucursal').click();
+},600)
 
 setTimeout(function(){
   cargarTablaEstudio();
@@ -331,6 +364,17 @@ function limpiarVariablesFiltro(){
       }    	
   });    
 }
+
+function cambiarSucursal(sucursal_key){
+  $.ajax ({
+      type: "POST",
+      url: "cambiarsucursal.php",
+      data: "sucursal_key="+sucursal_key,
+      success: function(html){
+        location.reload();
+      }    	
+  });    
+}    
 
 function cargarTablaEstudio()
     {
