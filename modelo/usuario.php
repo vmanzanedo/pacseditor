@@ -7,7 +7,7 @@ function Autenticar($usuario,$clave)
     {
     $con = new Conexion();
     $cnn = $con->ConectarGral();
-    $consulta = $cnn->prepare("SELECT usuario_id,usuario_user,usuario_nombre, usuario_adminpacs FROM usuario WHERE usuario_user = ? AND usuario_clave = ?");
+    $consulta = $cnn->prepare("SELECT usuario_id,usuario_user,usuario_nombre, usuario_adminpacs, usuario_eliminaestudio FROM usuario WHERE usuario_user = ? AND usuario_clave = ?");
     $consulta->execute(array($usuario,$clave));
     $reg = $consulta->fetch();
     if(isset($reg['usuario_id']))
@@ -19,6 +19,7 @@ function Autenticar($usuario,$clave)
         $_SESSION['usuario'] = $reg['usuario_user'];
         $_SESSION['nombre'] = $reg['usuario_nombre'];
         $_SESSION['usuario_adminpacs'] = $reg['usuario_adminpacs'];
+        $_SESSION['usuario_eliminaestudio'] = $reg['usuario_eliminaestudio'];
         $_SESSION['trabajarconworklist'] = 1;
         
         

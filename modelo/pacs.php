@@ -1,5 +1,5 @@
 <?php
-require_once("/var/www/html/ecos/pacseditor/seguridad.php");
+require_once("/var/www/html/pacseditor/seguridad.php");
 require_once("conexionpacs.php");
 require_once("conexion.php");
 

@@ -47,7 +47,9 @@ $listaseries = $pacs->ListaSeriexStudy($_REQUEST['pk']);
             <?php } ?>
         </td>
         <td style="text-align:right">
-            <button class="btn btn-danger btn-sm" onclick="eliminarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Eliminar Serie</button>
+            <?php if($_SESSION['usuario_eliminaestudio']==1) { ?>
+              <button class="btn btn-danger btn-sm" onclick="eliminarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Eliminar Serie</button>
+            <?php } ?>
         </td>
       </tr>
       <?php } ?>
