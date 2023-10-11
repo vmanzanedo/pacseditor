@@ -15,3 +15,5 @@ Versiones
 2023-09-08 Se añade funcion "Agregar paciente y migrar estudio", y "Mover Series"
 
 2023-10-03 Filtro por sucursal
+
+2023-10-11 Se deja boton "Crear paciente y migrar estudio" solo en edicion de datos demograficos

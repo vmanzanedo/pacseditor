@@ -45,8 +45,10 @@ echo "Patient PK: ".$pk;
     <div class="form-group box-footer">
         <label for="confirmar" class="control-label"> &nbsp;</label><br>
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-        <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="modificarPatient()">Confirmar</button>      
+        <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="modificarPatient()">Confirmar</button>   
+        <?php if ($op==1) { // Solo se habilita en la edicion de datos demograficos?>   
         <button id='crearpaciente' type='button' class='btn btn-success pull-right' data-dismiss="modal" onclick="crearPatient()">Crear Paciente y Migrar Estudio</button>      
+        <?php } ?>
     </div>
 </form>   
 
