@@ -73,7 +73,9 @@ $lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],
           <?php } ?>
         </td>
         <td>
-            <button type="button" class="btn btn-primary btn-block" onClick="eliminarEstudio('<?php echo $reg['study_iuid'] ?>')"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
+          <?php if($_SESSION['usuario_eliminaestudio']==1) { ?>
+                <button type="button" class="btn btn-primary btn-block" onClick="eliminarEstudio('<?php echo $reg['study_iuid'] ?>')"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
+            <?php } ?>
         </td>
       </tr>
       <?php }?>

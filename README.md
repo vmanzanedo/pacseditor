@@ -17,3 +17,9 @@ Versiones
 2023-10-03 Filtro por sucursal
 
 2023-10-11 Se deja boton "Crear paciente y migrar estudio" solo en edicion de datos demograficos
+
+
+Version 1.3
+
+1.3.0
+-Se controla eliminacion de estudios, series e imagenes de acuerdo al permiso del usuario
