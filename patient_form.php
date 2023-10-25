@@ -6,6 +6,7 @@ $paciente_sexo = (isset($_REQUEST['paciente_sexo']))?$_REQUEST['paciente_sexo']:
 $pk = (isset($_REQUEST['pk']))?$_REQUEST['pk']:0;
 $op = (isset($_REQUEST['op']))?$_REQUEST['op']:0;
 $study_iuid = (isset($_REQUEST['study_iuid']))?$_REQUEST['study_iuid']:0;
+$pat_id_issuer = (isset($_REQUEST['pat_id_issuer']))?$_REQUEST['pat_id_issuer']:"";
 
 echo "Patient PK: ".$pk;
 ?>
@@ -17,6 +18,7 @@ echo "Patient PK: ".$pk;
     <input type="hidden" id="paciente_sexo_old" value="<?php echo $paciente_sexo ?>">
     <input type="hidden" id="pk" value="<?php echo $pk ?>">
     <input type="hidden" id="study_iuid" value="<?php echo $study_iuid ?>">
+    <input type="hidden" id="pat_id_issuer" value="<?php echo $pat_id_issuer ?>">
     
     <div id="div_pacs_nombre" class="form-group">
       <label for="pacs_nombre">Apellido Nombre </label>

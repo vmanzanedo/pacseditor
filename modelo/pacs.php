@@ -70,7 +70,7 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     
     $cnn = new ConexionPacs();
     $consulta = $cnn->prepare("
-      SELECT patient.pk as patient_pk, accno_issuer_fk, patient.pat_id, replace(pat_name,'^',' ') as pat_name, pat_birthdate, pat_sex, study_datetime, study_desc, accession_no, study.study_iuid, study.pk, mods_in_study, study.updated_time, oculto.oculto_id
+      SELECT patient.pk as patient_pk, accno_issuer_fk, patient.pat_id, pat_id_issuer, replace(pat_name,'^',' ') as pat_name, pat_birthdate, pat_sex, study_datetime, study_desc, accession_no, study.study_iuid, study.pk, mods_in_study, study.updated_time, oculto.oculto_id
         FROM study 
         INNER JOIN patient ON study.patient_fk = patient.pk
         LEFT JOIN oculto ON study.study_iuid = oculto.study_iuid

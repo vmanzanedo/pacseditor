@@ -36,7 +36,7 @@ function modificarPatient()
         $.ajax ({
             type: "POST",
             url: "../pacseditor/patient_create.php",
-            data: "pat_name="+$("#paciente_nombre").val()+"&pat_id="+$("#paciente_dni").val()+"&pat_birthdate="+$("#paciente_fechanac").val()+"&pat_sex="+$("#paciente_sexo").val()+"&study_iuid="+$('#study_iuid').val(), 
+            data: "pat_name="+$("#paciente_nombre").val()+"&pat_id="+$("#paciente_dni").val()+"&pat_birthdate="+$("#paciente_fechanac").val()+"&pat_sex="+$("#paciente_sexo").val()+"&study_iuid="+$('#study_iuid').val()+"&pat_id_issuer="+$('#pat_id_issuer').val(), 
             success: function(html){
               cargarTablaEstudio();
             }

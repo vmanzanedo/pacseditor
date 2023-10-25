@@ -22,12 +22,13 @@ $pat_name = $_REQUEST['pat_name'];
 $pat_birthdate = $_REQUEST['pat_birthdate'];
 $pat_sex = $_REQUEST['pat_sex'];
 $study_iuid = $_REQUEST['study_iuid'];
+$pat_id_issuer = $_REQUEST['pat_id_issuer'];
 
 $updated_time = date("Y-m-d H:i:s");
 $created_time = date("Y-m-d H:i:s");
 
-$query = $cnnpacs->prepare("INSERT INTO patient(pat_id, pat_name, pat_birthdate, pat_sex, updated_time, created_time) VALUES (?,?,?,?,?,?)");
-$query->execute(array($pat_id, $pat_name, $pat_birthdate, $pat_sex, $updated_time, $created_time));
+$query = $cnnpacs->prepare("INSERT INTO patient(pat_id, pat_id_issuer, pat_name, pat_birthdate, pat_sex, updated_time, created_time) VALUES (?,?,?,?,?,?,?)");
+$query->execute(array($pat_id, $pat_id_issuer, $pat_name, $pat_birthdate, $pat_sex, $updated_time, $created_time));
 
 $query = $cnnpacs->prepare("SELECT max(pk) as maxpk FROM patient");
 $query->execute();
