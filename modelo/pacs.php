@@ -1,5 +1,5 @@
 <?php
-require_once("/var/www/html/ecos/pacseditor/seguridad.php");
+require_once("./seguridad.php");
 require_once("conexionpacs.php");
 require_once("conexion.php");
 
@@ -51,7 +51,7 @@ function SelectPatientxPk($pk)
     return $consulta->fetch();
   }  
   
-function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an)
+function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an, $estudio_modalidad)
     {
     $criterios = "true";
     if ($estudio_dni!='') $criterios .= " AND patient.pat_id = $estudio_dni";
@@ -64,6 +64,7 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     if ($estudio_an!='') $criterios .= " AND accession_no LIKE '%$estudio_an%'";
     if ($estudio_fechadesde!='') $criterios .= " AND date(study_datetime) >= '$estudio_fechadesde'";
     if ($estudio_fechahasta!='') $criterios .= " AND date(study_datetime) <= '$estudio_fechahasta'";
+    if ($estudio_modalidad!='null' && $estudio_modalidad!='') $criterios .= " AND mods_in_study IN ($estudio_modalidad)";
     
     if ($criterios == "true") $criterios= "false";
     
