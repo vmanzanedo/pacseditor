@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_name("pacseditor");
 session_start();
 

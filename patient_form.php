@@ -6,7 +6,7 @@ $paciente_sexo = (isset($_REQUEST['paciente_sexo']))?$_REQUEST['paciente_sexo']:
 $pk = (isset($_REQUEST['pk']))?$_REQUEST['pk']:0;
 $op = (isset($_REQUEST['op']))?$_REQUEST['op']:0;
 
-echo "Patient PK: ".$pk;
+//echo "Patient PK: ".$pk;
 ?>
 <form id="form_pacs">
     <input type="hidden" id="operacion" value="<?php echo $op ?>" />
@@ -43,7 +43,7 @@ echo "Patient PK: ".$pk;
     <div class="form-group box-footer">
         <label for="confirmar" class="control-label"> &nbsp;</label><br>
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-        <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="modificarPatient()">Confirmar</button>      
+        <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="controlHistorial()">Confirmar</button>      
     </div>
 </form>   
 

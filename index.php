@@ -7,12 +7,12 @@
 <!--===============================================================================================-->	
         <link rel="icon" type="image/png" href="./plugins/login17/images/icons/favicon_penta.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../plugins/login17/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./plugins/login17/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../plugins/login17/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./plugins/login17/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../plugins/login17/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../plugins/login17/css/main.css">
+	<link rel="stylesheet" type="text/css" href="./plugins/login17/css/util.css">
+	<link rel="stylesheet" type="text/css" href="./plugins/login17/css/main.css">
 <!--===============================================================================================-->
   
 </head>
@@ -23,7 +23,7 @@
                 <div class="wrap-login100">
                     <form id="form_login" action="login.php" method="POST" class="login100-form validate-form">
                         <span class="login100-form-title p-b-34">
-                            <img src="../plugins/login17/images/isotipopentalogic.jpg" style="border-radius: 0%" height="250" width="250"><br><br>
+                            <img src="./plugins/login17/images/isotipopentalogic.jpg" style="border-radius: 0%" height="250" width="250"><br><br>
                                 PACS Editor
                         </span>
 
@@ -63,7 +63,7 @@
                         </div>
                     </form>
 
-                    <div class="login100-more" style="background-image: url('../plugins/login17/images/bg-01orig.jpg');"></div>
+                    <div class="login100-more" style="background-image: url('./plugins/login17/images/bg-01orig.jpg');"></div>
                 </div>
             </div>
 	</div>
@@ -73,12 +73,12 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="../plugins/login17/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="./plugins/login17/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../plugins/login17/vendor/animsition/js/animsition.min.js"></script>
+	<script src="./plugins/login17/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../plugins/login17/vendor/bootstrap/js/popper.js"></script>
-	<script src="../plugins/login17/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./plugins/login17/vendor/bootstrap/js/popper.js"></script>
+	<script src="./plugins/login17/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 
         <script src="https://www.google.com/recaptcha/api.js"></script>

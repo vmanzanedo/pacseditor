@@ -22,7 +22,7 @@ $lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],
           <th>Fecha Estudio</th>
           <th>Telefono</th>
           <th>Modalidad</th>
-	  <th>Imágenes</th>
+	        <th>Imágenes</th>
           <th style="text-align:center"><i class="fa fa-edit"></i></th>
           <th>Series</th>
           <th></th>

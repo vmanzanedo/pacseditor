@@ -1,5 +1,5 @@
 <?php
-require_once("/var/www/html/ecos/pacseditor/seguridad.php");
+require_once("./seguridad.php");
 require_once("conexionpacs.php");
 require_once("conexion.php");
 
@@ -49,6 +49,15 @@ function SelectPatientxPk($pk)
     $consulta = $cnn->prepare("SELECT * FROM patient WHERE pk = ?");
     $consulta->execute(array($pk));
     return $consulta->fetch();
+  }  
+
+function cuentaEstudiosxPatient($pk)
+  {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("SELECT COUNT(pk) as cantidad FROM study WHERE study.patient_fk = ?");
+    $consulta->execute(array($pk));
+    $reg = $consulta->fetch();
+    return $reg['cantidad'];
   }  
   
 function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an)
