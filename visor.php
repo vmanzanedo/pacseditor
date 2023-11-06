@@ -1,8 +1,5 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-
-
+require_once './modelo/modalidad.php';
 include("seguridad.php");
 require_once("./modelo/sucursal.php");
 
@@ -26,7 +23,7 @@ $sucursal = new Sucursal();
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
   <link href="plugins/sweetalert/sweetalert2.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="plugins/select2/select2.min.css"> -->
+  <link rel="stylesheet" href="plugins/select2/select2.min.css">
   
   <!-- <link rel="stylesheet" href="plugins/toastr/build/toastr.css"> -->
 
@@ -184,6 +181,30 @@ thead input {
           </li>
 
           <li class="nav-item">
+            <a href="#" class="nav-link"  id="menuModalidad">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Modalidad
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <div class="nav-link">
+                  <select class="form-control select2" multiple id="estudio_modalidad" title="Modalidad">
+                    <?php 
+                    $modalidad = new Modalidad();
+                    $lista = $modalidad->Lista();
+                    while($reg = $lista->fetch()) { ?>
+                      <option value="'<?php echo $reg['modalidad_codigo']?>'"><?php echo $reg['modalidad_codigo'] ?></option>
+                    <?php } ?>
+                  </select>                     
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
             <a href="#" class="nav-link" id="menuFecha">
               <i class="nav-icon fa fa-calendar-alt"></i>
               <p>
@@ -308,6 +329,8 @@ thead input {
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 <script src="./plugins/sweetalert/sweetalert2.all.min.js"></script>
+<script src="plugins/select2/select2.full.min.js"></script>
+
 <script src="./js/modales.js?v=1.20231025"></script>
 <script src="./js/patient.js?v=1.20231025"></script>
 
@@ -316,7 +339,7 @@ thead input {
 </body>
 
 <script>
-
+$(".select2").select2({width:'100%'});
 modales();
 
 setTimeout(function(){
@@ -349,7 +372,7 @@ function cargarVariablesFiltro(){
       type: "POST",
       url: "cargarvariablesfiltro.php",
       async:false,
-      data: "estudio_dni="+$("#estudio_dni").val()+"&estudio_paciente="+$("#estudio_paciente").val()+"&estudio_fechadesde="+$("#estudio_fechadesde").val()+"&estudio_fechahasta="+$("#estudio_fechahasta").val()+"&estudio_an="+$("#estudio_an").val(), 
+      data: "estudio_dni="+$("#estudio_dni").val()+"&estudio_paciente="+$("#estudio_paciente").val()+"&estudio_fechadesde="+$("#estudio_fechadesde").val()+"&estudio_fechahasta="+$("#estudio_fechahasta").val()+"&estudio_an="+$("#estudio_an").val()+"&estudio_modalidad="+$("#estudio_modalidad").val(), 
       success: function(html){
         //$('#btnCollapse').click();
       }    	

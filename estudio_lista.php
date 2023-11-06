@@ -6,7 +6,7 @@ require_once("./modelo/pacs.php");
 $usuario = new Usuario;
 $pacs = new Pacs();
 
-$lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],  strtoupper($_SESSION['estudio_paciente']), $_SESSION['estudio_fechadesde'], $_SESSION['estudio_fechahasta'], $_SESSION['estudio_an'])
+$lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],  strtoupper($_SESSION['estudio_paciente']), $_SESSION['estudio_fechadesde'], $_SESSION['estudio_fechahasta'], $_SESSION['estudio_an'], $_SESSION['estudio_modalidad'])
 
 ?>
 
