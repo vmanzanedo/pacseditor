@@ -25,3 +25,4 @@ Version 1.3
 -Se controla eliminacion de estudios, series e imagenes de acuerdo al permiso del usuario
 -Al crear y migrar estudio, se incluye la copia del pat_id_issuer
 -Filtro por modalidad
+-Control de Historial de Estudios al modificar Datos o DNI

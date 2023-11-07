@@ -331,8 +331,8 @@ thead input {
 <script src="./plugins/sweetalert/sweetalert2.all.min.js"></script>
 <script src="plugins/select2/select2.full.min.js"></script>
 
-<script src="./js/modales.js?v=1.20231025"></script>
-<script src="./js/patient.js?v=1.20231025"></script>
+<script src="./js/modales.js?v=1.20231107"></script>
+<script src="./js/patient.js?v=1.20231107"></script>
 
 <script src="plugins/jquery-flexdatalist-2.2.4/jquery.flexdatalist.min.js"></script>
 
