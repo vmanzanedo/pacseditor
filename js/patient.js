@@ -1,4 +1,33 @@
 
+function controlHistorial()
+  {
+    $.ajax ({
+      type: "POST",
+      url: "../pacseditor/controlhistorial.php",
+      data: "paciente_dni="+$("#paciente_dni_old").val(), 
+      success: function(html){
+          if(html>1){
+            Swal.fire({
+              title: 'El paciente posee historial de estudios. \n ¿Desea modificar los datos para el estudio Actual, o para todo el Historial?',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: 'Modificar Historial',
+              denyButtonText: `Modificar Actual`,
+            }).then((result) => {
+              if (result.isConfirmed) {
+                modificarPatient();
+                Swal.fire('El Historial fue Modificado!', '', 'success')
+              } else if (result.isDenied) {
+                crearPatient();
+                Swal.fire('El Estudio Actual fue Modificado', '', 'success')
+              }
+            })
+          }else{
+            modificarPatient();
+          }
+        }
+      });
+  }
 
 function modificarPatient()
     {

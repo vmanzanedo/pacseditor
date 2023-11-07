@@ -8,7 +8,7 @@ $op = (isset($_REQUEST['op']))?$_REQUEST['op']:0;
 $study_iuid = (isset($_REQUEST['study_iuid']))?$_REQUEST['study_iuid']:0;
 $pat_id_issuer = (isset($_REQUEST['pat_id_issuer']))?$_REQUEST['pat_id_issuer']:"";
 
-echo "Patient PK: ".$pk;
+//echo "Patient PK: ".$pk;
 ?>
 <form id="form_pacs">
     <input type="hidden" id="operacion" value="<?php echo $op ?>" />
@@ -47,8 +47,7 @@ echo "Patient PK: ".$pk;
     <div class="form-group box-footer">
         <label for="confirmar" class="control-label"> &nbsp;</label><br>
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-        <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="modificarPatient()">Confirmar</button>   
-        <button id='crearpaciente' type='button' class='btn btn-success pull-right' data-dismiss="modal" onclick="crearPatient()">Crear Paciente y Migrar Estudio</button>      
+        <button id='confirmar' type='button' class='btn btn-primary pull-right' data-dismiss="modal" onclick="controlHistorial()">Confirmar</button>      
     </div>
 </form>   
 

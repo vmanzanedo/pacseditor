@@ -50,6 +50,17 @@ function SelectPatientxPk($pk)
     $consulta->execute(array($pk));
     return $consulta->fetch();
   }  
+
+function cuentaEstudiosxPatient($paciente_dni)
+  {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("SELECT count(patient.pat_id) as cantidad
+                                 FROM study 
+                           INNER JOIN patient ON study.patient_fk = patient.pk WHERE patient.pat_id = ?");
+    $consulta->execute(array($paciente_dni));
+    $reg = $consulta->fetch();
+    return $reg['cantidad'];
+  }  
   
 function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an, $estudio_modalidad)
     {
