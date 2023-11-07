@@ -4,7 +4,7 @@ function controlHistorial()
     $.ajax ({
       type: "POST",
       url: "../pacseditor/controlhistorial.php",
-      data: "pk="+$("#pk").val(), 
+      data: "paciente_dni="+$("#paciente_dni_old").val(), 
       success: function(html){
           if(html>1){
             Swal.fire({
