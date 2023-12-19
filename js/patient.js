@@ -42,6 +42,10 @@ function modificarPatient()
                       url: "../pacseditor/patient_abm_new_issuer.php",
                       data: "op="+$("#operacion").val()+"&pk="+$("#pk").val()+"&paciente_nombre="+$("#paciente_nombre").val()+"&paciente_dni="+$("#paciente_dni").val()+"&paciente_dni_old="+$("#paciente_dni_old").val()+"&paciente_fechanac="+$("#paciente_fechanac").val()+"&paciente_sexo="+$("#paciente_sexo").val(), 
                       success: function(html1){
+                        //Ultimadas las chances de modificacion via HL7, se procede a crear paciente y migrar estudio
+                        if (html1.includes('ambiguous')||html1.includes('exists')||html1.includes('merged')) { 
+                          crearPatient();
+                        }
                       }
                   });
               } else {

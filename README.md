@@ -26,3 +26,7 @@ Version 1.3
 -Al crear y migrar estudio, se incluye la copia del pat_id_issuer
 -Filtro por modalidad
 -Control de Historial de Estudios al modificar Datos o DNI
+
+
+1.3.1
+-Ante una modificacion de DNI, y el nuevo DNI ya existe, se ultiman los intentos de modificacion via HL7 y si no es exitoso se llama a la funcion crearPatient (crear y migrar estudio)
