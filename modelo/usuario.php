@@ -181,6 +181,15 @@ function SelectIdModulo($id)
     $consulta->execute(array($id));
     return $consulta->fetch();    
     }
+
+
+function ListaCodModalidadesxUsuarioCargados($usuario_id)
+    {
+    $cnn = new Conexion;
+    $consulta = $cnn->prepare("SELECT group_concat(modalidad.modalidad_codigo SEPARATOR ',') as codigo FROM usuarioxmodalidad INNER JOIN modalidad ON usuarioxmodalidad.modalidad_id = modalidad.modalidad_id WHERE usuarioxmodalidad.usuario_id = ? ORDER BY modalidad_descripcion");
+    $consulta->execute(array($usuario_id)); 
+    return $consulta;
+    }       
     
 }
 

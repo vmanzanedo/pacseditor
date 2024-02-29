@@ -62,7 +62,7 @@ function cuentaEstudiosxPatient($paciente_dni)
     return $reg['cantidad'];
   }  
   
-function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an, $estudio_modalidad)
+function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fechadesde, $estudio_fechahasta, $estudio_an, $estudio_modalidad, $modalidades)
     {
     $criterios = "true";
     if ($sucursal_key!='') $criterios .= " AND patient.pat_id_issuer = '$sucursal_key'";
@@ -77,6 +77,7 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     if ($estudio_fechadesde!='') $criterios .= " AND date(study_datetime) >= '$estudio_fechadesde'";
     if ($estudio_fechahasta!='') $criterios .= " AND date(study_datetime) <= '$estudio_fechahasta'";
     if ($estudio_modalidad!='null' && $estudio_modalidad!='') $criterios .= " AND mods_in_study IN ($estudio_modalidad)";
+    if ($modalidades!='') $criterios .= " AND mods_in_study IN ($modalidades)";
     
     if ($criterios == "true") $criterios= "false";
     

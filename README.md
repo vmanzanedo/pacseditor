@@ -30,3 +30,6 @@ Version 1.3
 
 1.3.1
 -Ante una modificacion de DNI, y el nuevo DNI ya existe, se ultiman los intentos de modificacion via HL7 y si no es exitoso se llama a la funcion crearPatient (crear y migrar estudio)
+
+1.3.2
+-Se filtra el listado por modalidad, si es que el usuario tienen modalidades asignadas

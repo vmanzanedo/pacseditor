@@ -6,10 +6,28 @@ require_once("./modelo/pacs.php");
 $usuario = new Usuario;
 $pacs = new Pacs();
 
-$lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],  strtoupper($_SESSION['estudio_paciente']), $_SESSION['estudio_fechadesde'], $_SESSION['estudio_fechahasta'], $_SESSION['estudio_an'], $_SESSION['estudio_modalidad'])
+
+//verifica si se encuentra con modalidad asignada
+$listamod = $usuario->ListaCodModalidadesxUsuarioCargados($_SESSION['usuario_id']);
+$rowmod=$listamod->fetch();
+
+$modalidades = "";
+if(!is_null($rowmod['codigo'])){ //tiene modalidades asignadas
+  $separa = explode(",", $rowmod['codigo']);
+  foreach($separa as $mod){
+    $final= $final.'"'.$mod.'",';
+  }
+  $modalidades = rtrim($final, ",");
+} 
+
+$lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],  strtoupper($_SESSION['estudio_paciente']), $_SESSION['estudio_fechadesde'], $_SESSION['estudio_fechahasta'], $_SESSION['estudio_an'], $_SESSION['estudio_modalidad'], $modalidades)
+
 
 ?>
 
+<?php if($modalidades!='') { ?>
+  <legend style="font-size:16px;">Modalidades: <span style="color:#009670"><?php echo $modalidades ?></span></legend>
+<?php }?>
 <table id="listaestudio" class="table table-dark table-striped table-hover">
     <thead>
         <tr>
