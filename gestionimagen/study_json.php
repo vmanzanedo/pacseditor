@@ -4,7 +4,7 @@ require_once("../modelo/pacs.php");
 $pacs = new Pacs();
 
 $result = array();
-$lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],  strtoupper($_SESSION['estudio_paciente']), $_SESSION['estudio_fechadesde'], $_SESSION['estudio_fechahasta'], $_SESSION['estudio_an'],$_SESSION['estudio_modalidad']);
+$lista = $pacs->ListaFiltro($_SESSION['sucursal_key'], $_SESSION['estudio_dni'],  strtoupper($_SESSION['estudio_paciente']), $_SESSION['estudio_fechadesde'], $_SESSION['estudio_fechahasta'], $_SESSION['estudio_an'],$_SESSION['estudio_modalidad'],'');
 
 while ($reg=$lista->fetch()){
   $node=array();
