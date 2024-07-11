@@ -45,3 +45,5 @@ Version 1.4
         sudo chown root:root root_shell
         sudo chmod u=rwx,go=xr,+s root_shell
 
+-Ocultar y eliminar series no cierra form modal        
+
