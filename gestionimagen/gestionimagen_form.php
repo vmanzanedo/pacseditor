@@ -45,12 +45,12 @@ $listaseries = $pacs->ListaSeriexStudy($_REQUEST['pk']);
         <?php if($regseries['ocultoserie_id']!=null){ //si esta oculta ?>
             <button class="btn btn-default btn-sm" onclick="mostrarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Mostrar Serie</button>          
         <?php }else{  ?>
-            <button class="btn btn-success btn-sm" onclick="ocultarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Ocultar Serie</button>          
+            <button class="btn btn-success btn-sm" id="btn_ocultarserie<?php echo $regseries['pk'] ?>" onclick="ocultarSerie('<?php echo $regseries['seriesiuid'] ?>','<?php echo $regseries['pk'] ?>')"> Ocultar Serie</button>          
             <?php } ?>
         </td>
         <td style="text-align:right">
             <?php if($_SESSION['usuario_eliminaestudio']==1) { ?>
-              <button class="btn btn-danger btn-sm" onclick="eliminarSerie('<?php echo $regseries['seriesiuid'] ?>')"> Eliminar Serie</button>
+              <button class="btn btn-danger btn-sm" id="btn_eliminarserie<?php echo $regseries['pk'] ?>" onclick="eliminarSerie('<?php echo $regseries['seriesiuid'] ?>','<?php echo $regseries['pk'] ?>')"> Eliminar Serie</button>
             <?php } ?>
         </td>
         <td style="text-align:right">

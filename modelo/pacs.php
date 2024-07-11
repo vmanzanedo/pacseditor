@@ -76,8 +76,8 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     if ($estudio_an!='') $criterios .= " AND accession_no LIKE '%$estudio_an%'";
     if ($estudio_fechadesde!='') $criterios .= " AND date(study_datetime) >= '$estudio_fechadesde'";
     if ($estudio_fechahasta!='') $criterios .= " AND date(study_datetime) <= '$estudio_fechahasta'";
-    if ($estudio_modalidad!='null' && $estudio_modalidad!='') $criterios .= " AND mods_in_study IN ($estudio_modalidad)";
-    if ($modalidades!='') $criterios .= " AND mods_in_study IN ($modalidades)";
+    if ($estudio_modalidad!='null' && $estudio_modalidad!='') $criterios .= " AND LEFT(mods_in_study,2) IN ($estudio_modalidad)";
+    if ($modalidades!='') $criterios .= " AND LEFT(mods_in_study,2) IN ($modalidades)";
     
     if ($criterios == "true") $criterios= "false";
     

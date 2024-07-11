@@ -413,6 +413,7 @@ function cargarTablaEstudio()
                     "initComplete": function (settings, json) {  
                       $("#listaestudio").wrap("<div style='overflow:auto; width:100%;position:relative;'></div>");            
                        },
+		                  "bStateSave": true,
                       "dom": '<"top">rt<"bottom"filp><"clear">',
                       "paging": true,
                       "pageLength": 10,
@@ -517,10 +518,10 @@ function ocultarEstudio(study_iuid) {
     })
   }
 //-----------------------SERIES-------------------------------
-function eliminarSerie(series_iuid) {
+function eliminarSerie(series_iuid,pk) {
     Swal.fire({
       title: 'Está seguro que desea ELIMINAR la SERIE?',
-      text: "La serie no podra ser resuperada.",
+      text: "La serie no podra ser recuperada.",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor:'#d33',
@@ -528,26 +529,28 @@ function eliminarSerie(series_iuid) {
       confirmButtonText: 'Si, Eliminarla!'
     }).then((result) => {
       if (result.isConfirmed) {
+        $('#btn_eliminarserie'+pk).prop('disabled',true);
+        $('#btn_eliminarserie'+pk).html('Eliminada');
         $.ajax ({
           type: "POST",
           url: "./gestionimagen/eliminarserie.php",
           data: "series_iuid="+series_iuid+"&op=0",
           success: function(html){
             //cargarTablaEstudio();
-            $("#modal").modal('hide');
+            //$("#modal").modal('hide');
           }    	
         });    
-        Swal.fire(
-          'Eliminada!',
-          'La Serie se eliminó.',
-          'success'
-        )
+        // Swal.fire(
+        //   'Eliminada!',
+        //   'La Serie se eliminó.',
+        //   'success'
+        // )
       }
     })
   }
 
 
-  function ocultarSerie(series_iuid) {
+  function ocultarSerie(series_iuid,pk) {
     Swal.fire({
       title: 'Está seguro que desea ocultar la SERIE?',
       text: "La serie no podra ser consultada.",
@@ -558,20 +561,22 @@ function eliminarSerie(series_iuid) {
       confirmButtonText: 'Si, Ocultarla!'
     }).then((result) => {
       if (result.isConfirmed) {
+        $('#btn_ocultarserie'+pk).prop('disabled',true);
+        $('#btn_ocultarserie'+pk).html('Oculta');
         $.ajax ({
           type: "POST",
           url: "./gestionimagen/ocultarserie.php",
           data: "series_iuid="+series_iuid+"&op=0",
           success: function(html){
             //cargarTablaEstudio();
-            $("#modal").modal('hide');
+            //$("#modal").modal('hide');
           }    	
         });    
-        Swal.fire(
-          'Oculta!',
-          'La Serie se ocultó.',
-          'success'
-        )
+        // Swal.fire(
+        //   'Oculta!',
+        //   'La Serie se ocultó.',
+        //   'success'
+        // )
       }
     })
   }
