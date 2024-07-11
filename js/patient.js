@@ -16,14 +16,17 @@ function controlHistorial()
             }).then((result) => {
               if (result.isConfirmed) {
                 modificarPatient();
-                Swal.fire('El Historial fue Modificado!', '', 'success')
+                Swal.fire('El Historial fue Modificado!', '', 'success');
+                actualizarDICOM(1);
               } else if (result.isDenied) {
                 crearPatient();
-                Swal.fire('El Estudio Actual fue Modificado', '', 'success')
+                Swal.fire('El Estudio Actual fue Modificado', '', 'success');
+                actualizarDICOM(0);
               }
             })
           }else{
             modificarPatient();
+            actualizarDICOM(0);
           }
         }
       });
@@ -75,3 +78,15 @@ function modificarPatient()
             }
         });
     }    
+
+
+  function actualizarDICOM(historial)
+    {
+        $.ajax ({
+            type: "POST",
+            url: "../pacseditor/actualizardicom.php",
+            data: "pat_name="+$("#paciente_nombre").val()+"&pat_id="+$("#paciente_dni").val()+"&pat_birthdate="+$("#paciente_fechanac").val()+"&pat_sex="+$("#paciente_sexo").val()+"&study_iuid="+$('#study_iuid').val()+"&pat_id_issuer="+$('#pat_id_issuer').val()+"&historial="+historial, 
+            success: function(html){
+            }
+        });
+    }     

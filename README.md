@@ -33,3 +33,15 @@ Version 1.3
 
 1.3.2
 -Se filtra el listado por modalidad, si es que el usuario tienen modalidades asignadas
+
+
+Version 1.4
+
+1.4.0
+-Se añade script en "C" (root_shell) para poder ejecutar "dcmodify" con permisos root. Se lo convoca desde "./actualzardicom.php" y en "./gestionimagen/moverseries.php"
+    El script es "root_shell.c". Se lo debe compilar con:
+        gcc root_shell.c -o root_shell
+    Luego añadir los siguientes permisos:
+        sudo chown root:root root_shell
+        sudo chmod u=rwx,go=xr,+s root_shell
+
