@@ -1,5 +1,5 @@
 <?php
-require_once("/var/www/html/ecos/pacseditor/seguridad.php");
+// require_once("/var/www/html/ecos/pacseditor/seguridad.php");
 require_once("conexionpacs.php");
 require_once("conexion.php");
 
@@ -233,6 +233,15 @@ function ListaFiltro($sucursal_key, $estudio_dni, $estudio_paciente, $estudio_fe
     $consulta->execute(array($series_pk));
     return $consulta;    
     }
+
+  function ListaTodasInstancias()
+    {
+    $cnn = new ConexionPacs();
+    $consulta = $cnn->prepare("SELECT *, instance.sop_iuid as sopiuid FROM instance 
+                               ORDER BY CAST(inst_no AS UNSIGNED)");
+    $consulta->execute();
+    return $consulta;    
+    }  
 
   function AuditaEliminacion($iuid, $tipo)
     {

@@ -15,8 +15,8 @@ class ConexionPacs extends PDO
         $this->motor = 'mysql';
         $this->host = 'localhost';
         $this->database = 'pacsdb';
-        $this->user = 'ecos';
-        $this->pass = 'C0v1d2020';
+        $this->user = 'root';
+        $this->pass = '100714';
 
         $dns = $this->motor.':dbname='.$this->database.";host=".$this->host;
         parent::__construct( $dns, $this->user, $this->pass );
@@ -31,7 +31,7 @@ function ConectarGral()
   {
   try
         {
-        $cnn = new PDO('mysql:host=localhost;dbname=pacsdb','ecos','C0v1d2020');
+        $cnn = new PDO('mysql:host=localhost;dbname=pacsdb','root','100714');
         return $cnn;
         }
     catch (Exception $e)
